@@ -62,22 +62,26 @@
 
     <!-- ABOUT -->
     <section class="about full-screen d-lg-flex justify-content-center align-items-center" id="about">
+ 
         <div class="container">
-            <div class="row">
+          
+            <div class="row" >
                 
-                <div class="col-lg-7 col-md-12 col-12 d-flex align-items-center">
+                <div class="col-lg-7 col-md-12 col-12 d-flex align-items-center" >
                     <div class="about-text">
                         <h1 class="animated animated-text">
-                            <span class="mr-2" >Hey folks, I'm</span>
+                        <span class="mr-2" >Hey folks, I'm</span>
+
                                 <div class="animated-info" >
                                     <span class="animated-item" >Abdelhamid ELBADRI</span>
                                     <span class="animated-item">Software Engineer</span>
                                     <span class="animated-item">web and mobile developer</span>
                                 </div>
                         </h1>
-                        <br><br><br>
+                        <br><br>
 
-                        <p>• I am a 5th year Software engineering student able to build a wide range of software (mobile & desktop apps, game engines, games) from the ground up - from conceiving, designing an architecture, to programming and deploying. Skilled at writing well-designed, testable and efficient code using current best practices in software engineering, and what I learned from design patterns and algorithms. Fast learner, hard worker, motivated and team player who is proficient in an array of programming and scripting languages such as C/C++, Java, Python, C#...</p>
+                        <p>I am a 5th year Software engineering student able to build a wide range of software (mobile & desktop apps, game engines, games) from the ground up; from conceiving, designing an architecture, to programming and deploying.</p>
+                        <p>Fast learner, hard worker, motivated and team player who is proficient in an array of programming and scripting languages such as C/C++, Java, Python, C#...</p>
 
                         
                         <div class="custom-btn-group mt-4">
@@ -213,7 +217,7 @@
                              </div>
                              <div class="timeline-info">
                                   <h3><span>5th year engineering curriculum</span><small>MUNDIAPOLIS University</small></h3>
-                                  <p>Please tell your friends about Tooplate website. That would be very helpful. We need your support.</p>
+                                  <p>Relevant Coursework: cloud computing, ERP, machine learning, IA and VR...</p>
                              </div>
                         </div>
 
@@ -223,7 +227,7 @@
                             </div>
                             <div class="timeline-info">
                                 <h3><span>2nd year SMPC</span><small>Hassan II University </small></h3>
-                                <p><a rel="nofollow" href="https://www.facebook.com/tooplate">Tooplate</a> is a great website to download HTML templates without any login or email.</p>
+                                <p>To be completed .</p>
                             </div>
                         </div>
                         
@@ -233,7 +237,7 @@
                             </div>
                             <div class="timeline-info">
                                 <h3><span>Baccalaureate (PC)</span><small> HOMAN ELFETWAKI Hight school </small></h3>
-                                <p>You can freely use Tooplate's templates for your business or personal sites. You cannot redistribute this template without a permission.</p>
+                                <p>Attended school from 2015, Graduated in 2017 (mention Well) .</p>
                             </div>
                         </div>
 
@@ -269,12 +273,12 @@
                 </ul>
             </div>
           </div>
-
+          <?php include 'php/mail_handler.php';?>
           <div class="col-lg-6 col-12">
             <div class="contact-form">
               <h2 class="mb-4">Interested to work together? Let's talk</h2>
 
-              <form action="" method="get">
+              <form action="php/mail_handler.php" method="post">
                 <div class="row">
                   <div class="col-lg-6 col-12">
                     <input type="text" class="form-control" name="name" placeholder="Your Name" id="name">
@@ -289,7 +293,7 @@
                   </div>
 
                   <div class="ml-lg-auto col-lg-5 col-12">
-                    <input type="submit" class="form-control submit-btn" value="Send Button">
+                    <input type="submit" name="submit" class="form-control submit-btn" value="Send message">
                   </div>
                 </div>
               </form>
