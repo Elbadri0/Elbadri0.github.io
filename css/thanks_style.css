@@ -5,7 +5,7 @@
 
 body {
     background: #ffffff;
-    background: linear-gradient(to bottom, #ffffff 0%, #e1e8ed 100%);
+    background: linear-gradient(to bottom, #ffffff 0%, #ffc200 100%);
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e1e8ed', GradientType=0);
     height: 100%;
     margin: 0;
@@ -43,7 +43,7 @@ h1 {
 }
 
 .go-home {
-    color: #fff;
+    color: #ffc200;
     background: #ffc200;
     border: none;
     padding: 10px 50px;
@@ -55,7 +55,7 @@ h1 {
 
 .footer-like {
     margin-top: auto;
-    background: #D7E6FE;
+    background: #ffc200;
     padding: 6px;
     text-align: center;
 }
