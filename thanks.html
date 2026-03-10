@@ -1,37 +1,306 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Message Sent — Abdelhamid Elbadri</title>
 
-    <title>ELBADRI's portfolio</title>
-    <link rel="icon" href="images/my_logo.jpg" type="image/icon type">
-    <link rel="stylesheet" href="css/thanks_style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --bg:      #0a0a0b;
+      --surface: #111113;
+      --border:  #1e1e22;
+      --gold:    #c9a84c;
+      --gold-dim:#8a6e2f;
+      --white:   #f0ede6;
+      --muted:   #6b6870;
+      --text:    #c8c4bc;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--gold); color: #000; }
+
+    /* Noise */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: .4;
+    }
+
+    /* Grid bg */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 100%);
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    /* Glow */
+    .glow {
+      position: fixed;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    /* Layout */
+    .page {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Logo */
+    .logo {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      padding: 0 clamp(1.5rem, 5vw, 3rem);
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,10,11,0.8);
+      backdrop-filter: blur(16px);
+    }
+
+    .logo-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* Card */
+    .card {
+      max-width: 520px;
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: clamp(2rem, 6vw, 3.5rem);
+      text-align: center;
+      animation: cardIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Checkmark */
+    .check-wrap {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      border: 2px solid var(--gold-dim);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 2rem;
+      position: relative;
+      animation: checkPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes checkPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+      50%       { box-shadow: 0 0 0 12px rgba(201,168,76,0.08); }
+    }
+
+    .check-wrap svg {
+      width: 32px; height: 32px;
+      stroke: var(--gold);
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 50;
+      stroke-dashoffset: 50;
+      animation: drawCheck 0.6s 0.4s ease forwards;
+    }
+
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* Label */
+    .label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      animation: fadeUp 0.5s 0.3s ease both;
+    }
+
+    /* Heading */
+    .heading {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(2.4rem, 6vw, 3.2rem);
+      color: var(--white);
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      animation: fadeUp 0.5s 0.4s ease both;
+    }
+
+    .heading em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* Sub */
+    .sub {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.5s 0.5s ease both;
+    }
+
+    /* Timer bar */
+    .timer-wrap {
+      margin-bottom: 2rem;
+      animation: fadeUp 0.5s 0.6s ease both;
+    }
+
+    .timer-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .timer-bar {
+      height: 2px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .timer-fill {
+      height: 100%;
+      background: var(--gold);
+      width: 100%;
+      animation: drainBar 6s linear forwards;
+      transform-origin: left;
+    }
+
+    @keyframes drainBar {
+      from { width: 100%; }
+      to   { width: 0%; }
+    }
+
+    /* Button */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #000;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 14px 28px;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+      animation: fadeUp 0.5s 0.7s ease both;
+    }
+
+    .btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Footer note */
+    .foot-note {
+      margin-top: 2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      animation: fadeUp 0.5s 0.8s ease both;
+    }
+  </style>
 </head>
-
 <body>
 
-    <div class=content>
-        <div class="wrapper-1">
-            <div class="wrapper-2">
-                <h1>Thank you !</h1>
-                <p>Thanks for contacting me. </p>
-                <p>you should receive my respond soon.</p> <br><br>
-                <a class="go-home" href="https://elbadriabdelhamid.engineer/">go back</a>
-            </div>
+  <div class="glow"></div>
 
-        </div>
+  <header class="logo">
+    <span class="logo-text">AE/</span>
+  </header>
+
+  <main class="page">
+    <div class="card">
+
+      <div class="check-wrap">
+        <svg viewBox="0 0 24 24">
+          <polyline points="4 12 9 17 20 7" />
+        </svg>
+      </div>
+
+      <div class="label">Message received</div>
+
+      <h1 class="heading">Thank you,<br><em>truly.</em></h1>
+
+      <p class="sub">
+        Your message is in my inbox. I'll get back to you as soon as possible — usually within a day or two.
+      </p>
+
+      <div class="timer-wrap">
+        <div class="timer-label">Redirecting you back in 6 seconds…</div>
+        <div class="timer-bar"><div class="timer-fill"></div></div>
+      </div>
+
+      <a href="#" class="btn">← Back to portfolio</a>
+
+      <p class="foot-note">elbadri.abdelhamid@gmail.com · Casablanca, Morocco</p>
+
     </div>
+  </main>
 
+  <script>
+    // Dynamic redirect — works on any domain/subdirectory
+    const base = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '/');
+    const home = base + 'index.html#contact';
 
+    // Set back button href dynamically
+    document.querySelector('.btn').href = home;
 
-    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Source+Sans+Pro" rel="stylesheet">
+    // Redirect after 6 seconds
+    setTimeout(() => { window.location.href = home; }, 6000);
+  </script>
 
 </body>
-
 </html>

@@ -967,7 +967,7 @@
         <span class="tag">Casablanca, Morocco</span>
       </div>
       <div class="hero-actions">
-        <a href="https://drive.google.com/uc?id=143DrCVsUwxWTGL5G-J3SDwhGFdClS-B4&export=download" target="_blank" rel="noopener" class="btn-primary">
+        <a href="https://drive.google.com/uc?id=120bpVupYYZTYqqYiuHEIhbp3BT4O9dPL&export=download" target="_blank" rel="noopener" class="btn-primary">
           ↓ Download CV
         </a>
         <a href="#contact" class="btn-outline">
@@ -1300,14 +1300,14 @@
             on modernizing legacy platforms. Let's talk.
           </p>
           <div class="contact-links">
-            <a href="mailto:elbadri.abdelhamid@gmail.com" class="contact-link">
+            <a href="/cdn-cgi/l/email-protection#8aefe6e8ebeef8e3a4ebe8eeefe6e2ebe7e3eecaede7ebe3e6a4e9e5e7" class="contact-link">
               <div class="contact-link-icon">✉</div>
               <div>
                 <span class="contact-link-label">Email</span>
-                elbadri.abdelhamid@gmail.com
+                <span class="__cf_email__" data-cfemail="ceaba2acafaabca7e0afacaaaba2a6afa3a7aa8ea9a3afa7a2e0ada1a3">[email&#160;protected]</span>
               </div>
             </a>
-            <a href="https://www.linkedin.com/in/abdelhamid-elbadri-engineer/" target="_blank" rel="noopener" class="contact-link">
+            <a href="https://www.linkedin.com/in/abdelhamid-elbadri-19366314a/" target="_blank" rel="noopener" class="contact-link">
               <div class="contact-link-icon">in</div>
               <div>
                 <span class="contact-link-label">LinkedIn</span>
@@ -1331,8 +1331,8 @@
           </div>
         </div>
         <div class="fade-up">
-          <form action="https://formsubmit.co/elbadri.abdelhamid@gmail.com" method="POST" class="contact-form">
-            <input type="hidden" name="_next" value="https://elbadriabdelhamid.engineer/thanks.html" />
+          <form action="https://formsubmit.co/elbadri.abdelhamid@gmail.com" method="POST" class="contact-form" id="contactForm">
+            <input type="hidden" name="_next" id="nextRedirect" value="" />
             <div class="form-row">
               <div class="form-field">
                 <label class="form-label" for="name">Name</label>
@@ -1365,12 +1365,18 @@
       <div class="footer-socials">
         <a href="https://github.com/Elbadri0" target="_blank" rel="noopener">GitHub</a>
         <a href="https://www.linkedin.com/in/abdelhamid-elbadri-19366314a/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="mailto:elbadri.abdelhamid@gmail.com">Email</a>
+        <a href="/cdn-cgi/l/email-protection#4e2b222c2f2a3c27602f2c2a2b22262f23272a0e29232f2722602d2123">Email</a>
       </div>
     </div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Dynamic form redirect — works on any domain
+    const nextInput = document.getElementById('nextRedirect');
+    if (nextInput) {
+      nextInput.value = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '/') + 'thanks.html';
+    }
+
     // Cursor dot
     const dot = document.getElementById('cursorDot');
     document.addEventListener('mousemove', e => {
@@ -1396,8 +1402,7 @@
         if (target) target.scrollIntoView({ behavior: 'smooth' });
       });
     });
-
-    // Fade-up on scroll
+// Fade-up on scroll
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
