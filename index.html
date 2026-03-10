@@ -1,443 +1,1412 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta property='og:title' content="ELBADRI's portfolio" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.elbadriabdelhamid.me" />
-    <meta property='og:image' content='//github.com/Elbadri0/Elbadri0.github.io/blob/main/image-pres.jpg'>
-    <meta property='og:description' content='check my website for more'>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Abdelhamid Elbadri — Backend Software Engineer specializing in Java, Spring Boot, and scalable cloud systems." />
+  <meta property="og:title" content="Abdelhamid Elbadri — Backend Engineer" />
+  <meta property="og:description" content="Designing robust backend systems with Java, Spring Boot, and AWS." />
+  <meta property="og:url" content="https://elbadriabdelhamid.engineer/" />
+  <title>Abdelhamid Elbadri — Backend Engineer</title>
 
-    <title>ELBADRI's portfolio</title>
-    <link rel="icon" href="images/my_logo.jpg" type="image/icon type">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/unicons.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-    <!-- MAIN STYLE -->
-    <link rel="stylesheet" href="css/tooplate-style.css">
+  <style>
+    /* ── RESET & TOKENS ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --bg:       #0a0a0b;
+      --surface:  #111113;
+      --border:   #1e1e22;
+      --gold:     #c9a84c;
+      --gold-dim: #8a6e2f;
+      --white:    #f0ede6;
+      --muted:    #6b6870;
+      --text:     #c8c4bc;
+
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-mono:    'DM Mono', 'Courier New', monospace;
+      --font-sans:    'DM Sans', system-ui, sans-serif;
+
+      --max-w: 1080px;
+      --nav-h: 64px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--gold); color: #000; }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { display: block; max-width: 100%; }
+
+    /* ── SCROLLBAR ──────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+    /* ── NOISE OVERLAY ──────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: .4;
+    }
+
+    /* ── NAVIGATION ─────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(10,10,11,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      display: flex; align-items: center;
+      padding: 0 clamp(1.5rem, 5vw, 3rem);
+      transition: border-color 0.3s;
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold) !important;
+      border: 1px solid var(--gold-dim);
+      padding: 7px 18px;
+      border-radius: 2px;
+      transition: background 0.2s, color 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold) !important;
+      color: #000 !important;
+    }
+
+    /* hamburger */
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span {
+      display: block; width: 22px; height: 2px;
+      background: var(--white); margin: 5px 0;
+      transition: all 0.3s;
+    }
+
+    /* ── SECTIONS ───────────────────────────────────────── */
+    section {
+      padding: 7rem clamp(1.5rem, 5vw, 3rem);
+    }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    /* ── HERO ───────────────────────────────────────────── */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding-top: calc(var(--nav-h) + 4rem);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+      opacity: 0.4;
+    }
+
+    .hero-accent {
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 40px; height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      line-height: 1;
+      color: var(--white);
+      letter-spacing: -2px;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+      color: var(--muted);
+      font-weight: 400;
+      letter-spacing: -0.5px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-desc {
+      max-width: 520px;
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 3rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 3rem;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .tag:hover { border-color: var(--gold-dim); color: var(--gold); }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold);
+      color: #000;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 14px 28px;
+      border-radius: 2px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); color: #000; }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      color: var(--white);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 14px 28px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .btn-outline:hover { border-color: var(--gold-dim); color: var(--gold); transform: translateY(-1px); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: clamp(1.5rem, 5vw, 3rem);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .scroll-line {
+      width: 48px; height: 1px;
+      background: var(--muted);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    /* ── DIVIDER ────────────────────────────────────────── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 clamp(1.5rem, 5vw, 3rem);
+    }
+
+    /* ── ABOUT ──────────────────────────────────────────── */
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    #about h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 1.5rem;
+    }
+
+    #about p {
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+
+    .stat-item {
+      background: var(--surface);
+      padding: 1.5rem;
+      transition: background 0.2s;
+    }
+
+    .stat-item:hover { background: #17171a; }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── SKILLS ─────────────────────────────────────────── */
+    #skills {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skills-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3.5rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .skills-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+      color: var(--white);
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .skill-group {
+      background: var(--bg);
+      padding: 2rem;
+      transition: background 0.2s;
+    }
+
+    .skill-group:hover { background: #0f0f11; }
+
+    .skill-group-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-group-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill-pill {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .skill-pill:hover { border-color: var(--gold-dim); color: var(--gold); }
+
+    /* ── EXPERIENCE ─────────────────────────────────────── */
+    #experience h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+      color: var(--white);
+      letter-spacing: -1px;
+      margin-bottom: 3.5rem;
+    }
+
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2.5rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .exp-item:first-child { border-top: 1px solid var(--border); }
+
+    .exp-meta {
+      padding-top: 4px;
+    }
+
+    .exp-company {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .exp-period {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .exp-role {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      margin-bottom: 1rem;
+    }
+
+    .exp-desc {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .exp-bullets li {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .exp-bullets li::before {
+      content: '→';
+      color: var(--gold);
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .exp-tags {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-top: 1.25rem;
+    }
+
+    /* ── PROJECT ────────────────────────────────────────── */
+    #project {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .project-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+      color: var(--white);
+      letter-spacing: -1px;
+    }
+
+    .project-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-2px);
+    }
+
+    .project-card-inner {
+      padding: 2.5rem;
+    }
+
+    .project-number {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+
+    .project-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-card p {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-result {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .result-item {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .result-item strong {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--gold);
+    }
+
+    /* ── CERTS & EDUCATION ──────────────────────────────── */
+    #resume h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+      color: var(--white);
+      letter-spacing: -1px;
+      margin-bottom: 3rem;
+    }
+
+    .resume-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .resume-block h3 {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .resume-items { display: flex; flex-direction: column; gap: 1px; }
+
+    .resume-item {
+      background: var(--surface);
+      padding: 1.25rem 1.5rem;
+      transition: background 0.2s;
+    }
+
+    .resume-item:hover { background: #17171a; }
+
+    .resume-item-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .resume-item-sub {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--gold);
+      margin-bottom: 0.2rem;
+    }
+
+    .resume-item-year {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ── CONTACT ────────────────────────────────────────── */
+    #contact {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-left h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      color: var(--white);
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-left h2 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .contact-left p {
+      font-size: 16px;
+      color: var(--text);
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: border-color 0.2s, background 0.2s;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .contact-link:hover {
+      border-color: var(--gold-dim);
+      background: rgba(201,168,76,0.04);
+      color: var(--white);
+    }
+
+    .contact-link-icon {
+      width: 36px; height: 36px;
+      background: var(--border);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold);
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .contact-link-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* FORM */
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+
+    .form-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .form-input, .form-textarea {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      padding: 12px 14px;
+      border-radius: 2px;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--gold-dim);
+    }
+
+    .form-input::placeholder, .form-textarea::placeholder {
+      color: var(--muted);
+    }
+
+    .form-textarea { min-height: 140px; }
+
+    .form-submit {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--gold);
+      color: #000;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 14px 28px;
+      border-radius: 2px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      align-self: flex-start;
+    }
+
+    .form-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem clamp(1.5rem, 5vw, 3rem);
+    }
+
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-socials a {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .footer-socials a:hover { color: var(--gold); }
+
+    /* ── ANIMATIONS ─────────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 900px) {
+      #about .about-grid,
+      .contact-grid,
+      .resume-cols {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .exp-item {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: var(--nav-h); left: 0; right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        padding: 1.5rem;
+        gap: 0.75rem;
+      }
+      .nav-toggle { display: block; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+    }
+
+    /* ── CURSOR DOT ─────────────────────────────────────── */
+    .cursor-dot {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s;
+    }
+
+    @media (hover: none) { .cursor-dot { display: none; } }
+  </style>
 </head>
-
 <body>
 
-    <!-- MENU -->
-    <nav class="navbar navbar-expand-sm navbar-light">
-        <div class="container">
-            <a class="navbar-brand" href="index.html"><i class='uil uil-smile-dizzy'></i> Abdelhamid</a>
+  <!-- Cursor dot -->
+  <div class="cursor-dot" id="cursorDot"></div>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-            </button>
+  <!-- ── NAVIGATION ────────────────────────────── -->
+  <nav>
+    <div class="nav-inner">
+      <span class="nav-logo">AE/</span>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#project">Projects</a></li>
+        <li><a href="#resume">Credentials</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link"><span data-hover="About">About</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#project" class="nav-link"><span data-hover="Projects">Projects</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#resume" class="nav-link"><span data-hover="Resume">Resume</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#contact" class="nav-link"><span data-hover="Contact">Contact</span></a>
-                    </li>
-                </ul>
+  <!-- ── HERO ──────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-accent"></div>
+    <div class="container hero-content">
+      <div class="hero-eyebrow">Available for opportunities</div>
+      <h1 class="hero-name">Abdelhamid<br><em>Elbadri</em></h1>
+      <p class="hero-title">Backend Software Engineer</p>
+      <p class="hero-desc">
+        Designing and maintaining robust backend systems with Java and Spring Boot.
+        Currently at Capgemini, building scalable APIs and cloud-ready enterprise platforms.
+      </p>
+      <div class="hero-tags">
+        <span class="tag">Java · Spring Boot</span>
+        <span class="tag">RESTful APIs</span>
+        <span class="tag">Angular</span>
+        <span class="tag">MySQL · PostgreSQL</span>
+        <span class="tag">AWS · CI/CD</span>
+        <span class="tag">Casablanca, Morocco</span>
+      </div>
+      <div class="hero-actions">
+        <a href="https://drive.google.com/uc?id=143DrCVsUwxWTGL5G-J3SDwhGFdClS-B4&export=download" target="_blank" rel="noopener" class="btn-primary">
+          ↓ Download CV
+        </a>
+        <a href="#contact" class="btn-outline">
+          Let's work together →
+        </a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span class="scroll-line"></span>
+      Scroll to explore
+    </div>
+  </section>
 
-                <ul class="navbar-nav ml-lg-auto">
-                    <div class="ml-lg-4">
-                        <div class="color-mode d-lg-flex justify-content-center align-items-center">
-                            <i class="color-mode-icon"></i> Color mode
-                        </div>
-                    </div>
-                </ul>
-            </div>
+  <hr class="divider" />
+
+  <!-- ── ABOUT ─────────────────────────────────── -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="fade-up">
+          <div class="section-label">01 — About</div>
+          <h2>Turning complex systems into clean, reliable code.</h2>
+          <p>
+            I'm a backend-focused software engineer with professional experience designing
+            and shipping scalable services at enterprise scale. Currently at Capgemini,
+            I work across the full stack — with a strong focus on API architecture,
+            database modeling, and deployment pipelines.
+          </p>
+          <p>
+            I value clean architecture, meaningful tests, and systems that are easy for
+            the next engineer to understand. I enjoy bridging the gap between business
+            requirements and technical execution.
+          </p>
+          <div class="hero-actions" style="margin-top:2rem;">
+            <a href="#contact" class="btn-outline">Hire me →</a>
+          </div>
         </div>
-    </nav>
-
-    <!-- ABOUT -->
-    <section class="about full-screen d-lg-flex justify-content-center align-items-center" id="about"
-        style="padding-top: 80px;">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-7 col-md-12 col-12 d-flex align-items-center">
-                    <div class="about-text">
-                        <h1 class="animated animated-text" style="margin-top: 0px;">
-                            <span class="mr-2">Hey folks, I'm</span>
-
-                            <div class="animated-info">
-                                <span class="animated-item">Abdelhamid ELBADRI</span>
-                                <span class="animated-item">Software Engineer</span>
-                                <span class="animated-item">web and mobile developer</span>
-                            </div>
-                        </h1>
-                        <br><br><br>
-
-                        <p>I am Software engineering able to build a wide range of software (mobile & web apps, game
-                            engines, games) from the ground up; from conceiving, designing an architecture, to
-                            programming and deploying.</p>
-                        <p>Skilled at writing well-designed, testable and efficient code using current best practices in
-                            software engineering, and what I learned from design patterns and algorithms.</p>
-                        <p>Fast learner, hard worker, motivated and team player who is proficient in an array of
-                            programming and scripting languages such as C/C++, Java, Python, C#...</p>
-
-
-                                                    <div class="custom-btn-group mt-4">
-                            <a target="_blank" rel="noopener noreferrer"
-                                href="https://drive.google.com/uc?id=120bpVupYYZTYqqYiuHEIhbp3BT4O9dPL&export=download"
-                                class="btn mr-lg-2 custom-btn"><i class='uil uil-file-alt'></i> Download Resume</a>
-                            <a target="_blank" rel="noopener noreferrer"
-                                href="https://www.linkedin.com/in/abdelhamid-elbadri-19366314a/"
-                                class="btn custom-btn custom-btn-bg custom-btn-link">Get in touch</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-5 col-md-12 col-12">
-                    <div class="about-image svg">
-                        <img src="images/undraw/Software engineer-amico.svg" class="img-fluid" alt="svg image">
-                    </div>
-                </div>
-
+        <div class="fade-up">
+          <div class="about-stats">
+            <div class="stat-item">
+              <div class="stat-num">3+</div>
+              <div class="stat-label">Years professional experience</div>
             </div>
-        </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section class="project py-5" id="project">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-11 text-center mx-auto col-12">
-
-                    <div class="col-lg-8 mx-auto">
-                        <h2>Some projects that i've been working on</h2>
-                    </div>
-
-                    <div class="owl-carousel owl-theme">
-                        <div class="item">
-                            <div class="project-info">
-                                <img src="images/project/project-images (1).png" class="img-fluid" alt="project image">
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="project-info">
-                                <img src="images/project/project-images (2).png" class="img-fluid" alt="project image">
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="project-info">
-                                <img src="images/project/project-images (3).png" class="img-fluid" alt="project image">
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="project-info">
-                                <img src="images/project/project-images (4).png" class="img-fluid" alt="project image">
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="project-info">
-                                <img src="images/project/project-images (5).png" class="img-fluid" alt="project image">
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="project-info">
-                                <img src="images/project/project-images (6).png" class="img-fluid" alt="project image">
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+            <div class="stat-item">
+              <div class="stat-num">5+</div>
+              <div class="stat-label">Certifications earned</div>
             </div>
-        </div>
-    </section>
-
-    <!-- FEATURES -->
-    <section class="resume py-5 d-lg-flex justify-content-center align-items-center" id="resume">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-6 col-12">
-                    <h2 class="mb-4">Experiences</h2>
-
-                    <div class="timeline">
-
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>2023</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3><span>FULL-STACK Software engineer </span><small>Capgemini TS</small></h3>
-                                <p>• Developed and maintained Java Spring Boot backend services to support scalable and
-                                    robust applications.</p>
-                                <p>• Designed and implemented RESTful APIs to facilitate seamless communication between
-                                    frontend and backend components.</p>
-                                <p>• Built responsive and interactive user interfaces using Angular, HTML, CSS, and
-                                    TypeScript.</p>
-                                <p>• Integrated frontend and backend modules, ensuring smooth data flow and
-                                    synchronization.</p>
-                                <p>• Conducted thorough unit tests to validate code functionality and identify and fix
-                                    any issues.</p>
-                                <p>• Collaborated with cross-functional teams, including software engineers, testers,
-                                    designers, and project managers, to understand requirements and ensure successful
-                                    project delivery.</p>
-                                <p>• Participated in code reviews, providing constructive feedback to maintain code
-                                    quality and adherence to best practices.</p>
-                                <p>• Troubleshot and debugged issues, employing effective debugging techniques and tools
-                                    to ensure the proper functioning of applications.</p>
-
-                            </div>
-                        </div>
-
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>2022</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3><span>FULL-STACK DEVELOPER INTERN</span><small>STELLANTIS</small></h3>
-                                <p>• Led requirements engineering efforts for the company's website redesign,
-                                    collaborating with staff members to gather project propositions. Resulted in a
-                                    clean, well-structured, and user-friendly website.</p>
-                                <p>• Developed a Laravel-based web application to replace a complex multi-sheet Excel
-                                    file with macros. The transformation enhanced usability and efficiency for users.
-                                </p>
-                                <p>• Successfully migrated Excel files to SQL databases, ensuring data integrity and
-                                    minimizing the risk of data loss.</p>
-                                <p>• Deployed the application on the PSA Intranet server, providing secure and
-                                    accessible access for internal users.</p>
-
-                            </div>
-                        </div>
-
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>2021</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3><span>GAME DEVELOPER INTERN</span><small>HICA Solution</small></h3>
-                                <p>• Spearheaded the development of a 3D Unity video game using C++, implementing core
-                                    game mechanics and functionalities to create an immersive gaming experience.</p>
-                                <p>• Conducted performance analysis and comparison of different gaming consoles on the
-                                    video game, specifically evaluating the performance of the Hica hand-controller and
-                                    Manus VR for optimal user experience.</p>
-                                <p>• Collaborated with the game design team to create and integrate high-quality 3D
-                                    objects into game scenes, utilizing formats such as FBX, OBJ, and MTL to ensure
-                                    realistic and visually appealing environments.</p>
-
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-12">
-                    <h2 class="mb-4 mobile-mt-2">Educations</h2>
-
-                    <div class="timeline">
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>2022</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3><span>Software Engineering Degree (BAC+5)</span><small>MUNDIAPOLIS
-                                        University</small></h3>
-                                <p>Relevant Coursework: Developement (Laravel, JEE, Flutter...), cloud computing, ERP,
-                                    machine learning, IA and VR...</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>2019</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3><span>Integrated preparatory cycle (BAC+2)</span><small>MUNDIAPOLIS
-                                        University</small></h3>
-                                <p>Relevant Coursework: Developement (C, JAVA, python, HTML, CSS, JS...), Arduino, UML,
-                                    deterministic finite automaton...</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>2018</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3><span>2nd year SMPC</span><small>Hassan II University </small></h3>
-                                <p>To be completed.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>2017</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3><span>Baccalaureate (PC)</span><small> HOMAN ELFETWAKI Hight school </small></h3>
-                                <p>Attended school from 2015, Graduated in 2017 (mention Well) .</p>
-                            </div>
-                        </div>
-
-                    </div>
-                    <br><br><br>
-                    <h2 class="mb-4 mobile-mt-2">Certifications</h2>
-
-                    <div class="timeline">
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>2022</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3><span>Honoris 21st Century Skills Certificate</span><small>Honoris Online
-                                        Academy</small></h3>
-                                <p>An online program dedicated to key skills for the world of tomorrow's work:
-                                    Behavioral Intelligence, Critical Thinking, Creativity and Design Thinking,
-                                    Communication, Collaboration, Coding, Data Analysis, and Entrepreneurship.</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>2021</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3><span>AWS S3</span><small>Coursera</small></h3>
-                                <p>The AWS S3 certification from Coursera validates your expertise in using and managing
-                                    Amazon S3, enhancing your career prospects and industry recognition. It provides
-                                    practical skills, AWS ecosystem familiarity, and networking opportunities.</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>2021</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3><span>Game development with Unity</span><small>BitDegree</small></h3>
-                                <p>The Game Development with Unity certificate from BitDegree validates your proficiency
-                                    in Unity game development, opening up career opportunities in the gaming industry
-                                    and showcasing your practical skills in Unity game development.</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
+            <div class="stat-item">
+              <div class="stat-num">10+</div>
+              <div class="stat-label">Technologies mastered</div>
             </div>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="contact py-5" id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 mr-lg-5 col-12">
-                    <div class="google-map w-100">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d4044.024801930356!2d-7.683919256407026!3d33.53905644296451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e0!4m0!4m3!3m2!1d33.5404085!2d-7.682854799999999!5e0!3m2!1sfr!2sma!4v1638865399929!5m2!1sfr!2sma"
-                            width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-                    </div>
-
-                    <div class="contact-info d-flex justify-content-between align-items-center py-4 px-lg-5">
-                        <div class="contact-info-item">
-                            <h3 class="mb-3 text-white">ELBADRI Abdelhamid</h3>
-                            <p class="footer-text mb-0">+212 6-4962-8821</p>
-                            <!-- <p class="footer-text mb-0">+1 (315) 997-5419</p> -->
-                            <p><a href="mailto:elbadri.abdelhamid@gmail.com">elbadri.abdelhamid@gmail.com</a></p>
-                        </div>
-
-                        <ul class="social-links">
-                            <li><a href="https://github.com/Elbadri0" data-toggle="tooltip" data-placement="left"
-                                    title="github"><span class="iconify" data-icon="bi:github"
-                                        style="color: white;"></span></a></li>
-                            <!-- <li><a href="https://www.instagram.com/elbadri_abdelhamid/" data-toggle="tooltip" data-placement="left" title="Instagram"><span class="iconify" data-icon="akar-icons:instagram-fill" style="color: white;"></span></a></li>
-                           -->
-                            <li><a href="https://www.linkedin.com/in/abdelhamid-elbadri-19366314a/"
-                                    data-toggle="tooltip" data-placement="left" title="linkedin"><span class="iconify"
-                                        data-icon="akar-icons:linkedin-fill" style="color: white;"></span></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-12">
-                    <div class="contact-form">
-                        <h2 class="mb-4">Interested to work together? Let's talk</h2>
-
-                        <form action="https://formsubmit.co/elbadri.abdelhamid@gmail.com" method="POST">
-                            <div class="row">
-                                <div class="col-lg-6 col-12">
-                                    <input type="text" class="form-control" name="name" placeholder="Your Name"
-                                        id="name" required>
-                                </div>
-
-                                <div class="col-lg-6 col-12">
-                                    <input type="email" class="form-control" name="email" placeholder="Email" id="email"
-                                        required>
-                                </div>
-
-                                <div class="col-12">
-                                    <textarea name="message" rows="6" class="form-control" id="message"
-                                        placeholder="Message"></textarea>
-                                </div>
-
-                                <div class="ml-lg-auto col-lg-5 col-12">
-                                    <input type="submit" name="submit" class="form-control submit-btn"
-                                        value="Send message">
-                                </div>
-
-                                <div class="ml-lg-auto col-lg-5 col-12">
-                                    <input type="hidden" name="_next"
-                                        value="https://elbadriabdelhamid.engineer/thanks.html">
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-
+            <div class="stat-item">
+              <div class="stat-num">3</div>
+              <div class="stat-label">Companies contributed to</div>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- FOOTER -->
-    <footer class="footer py-5">
-        <div class="container">
-            <div class="row">
+  <hr class="divider" />
 
-                <div class="col-lg-12 col-12">
-                    <p class="copyright-text text-center">Copyright &copy; 2021 MESolution . All rights reserved</p>
-                    <p class="copyright-text text-center">Designed by <a rel="nofollow"
-                            href="https://github.com/Elbadri0">ELBADRI Abdelhamid</a></p>
-                </div>
+  <!-- ── SKILLS ────────────────────────────────── -->
+  <section id="skills">
+    <div class="container">
+      <div class="skills-header fade-up">
+        <div>
+          <div class="section-label">02 — Skills</div>
+          <h2>Technical Toolkit</h2>
+        </div>
+      </div>
+      <div class="skills-grid fade-up">
+        <div class="skill-group">
+          <div class="skill-group-label">Backend</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Java</span>
+            <span class="skill-pill">Spring Boot</span>
+            <span class="skill-pill">Spring Framework</span>
+            <span class="skill-pill">Java EE · JEE</span>
+            <span class="skill-pill">REST APIs</span>
+            <span class="skill-pill">JSP</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Frontend</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Angular</span>
+            <span class="skill-pill">TypeScript</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">HTML / CSS</span>
+            <span class="skill-pill">Laravel / PHP</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Databases</div>
+          <div class="skill-pills">
+            <span class="skill-pill">MySQL</span>
+            <span class="skill-pill">PostgreSQL</span>
+            <span class="skill-pill">Data Modeling</span>
+            <span class="skill-pill">Query Optimization</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Cloud & DevOps</div>
+          <div class="skill-pills">
+            <span class="skill-pill">AWS S3</span>
+            <span class="skill-pill">Elastic Beanstalk</span>
+            <span class="skill-pill">Git / GitHub</span>
+            <span class="skill-pill">Maven</span>
+            <span class="skill-pill">CI/CD</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Other Languages</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">C#</span>
+            <span class="skill-pill">C++</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Methodologies</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Agile / Scrum</span>
+            <span class="skill-pill">TDD</span>
+            <span class="skill-pill">Requirements Engineering</span>
+            <span class="skill-pill">System Architecture</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── EXPERIENCE ─────────────────────────────── -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-label fade-up">03 — Experience</div>
+      <h2 class="fade-up">Professional History</h2>
+      <div class="exp-list">
+
+        <div class="exp-item fade-up">
+          <div class="exp-meta">
+            <div class="exp-company">Capgemini TS</div>
+            <div class="exp-period">Dec 2022 — Present</div>
+          </div>
+          <div class="exp-body">
+            <div class="exp-role">Software Engineer</div>
+            <p class="exp-desc">Building and maintaining enterprise-scale backend services and full-stack applications for clients across industries.</p>
+            <ul class="exp-bullets">
+              <li>Developed and maintained RESTful APIs using Java Spring Boot, integrated with MySQL and PostgreSQL databases.</li>
+              <li>Built responsive Angular frontend components connected to backend REST APIs.</li>
+              <li>Deployed and maintained JEE applications with JSP on WildFly server.</li>
+              <li>Conducted unit tests and collaborated with cross-functional teams (engineers, QA, designers, PMs) to deliver features on schedule.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">Java</span>
+              <span class="tag">Spring Boot</span>
+              <span class="tag">Angular</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">WildFly</span>
             </div>
+          </div>
         </div>
-    </footer>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/Headroom.js"></script>
-    <script src="js/jQuery.headroom.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/smoothscroll.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
+        <div class="exp-item fade-up">
+          <div class="exp-meta">
+            <div class="exp-company">Stellantis</div>
+            <div class="exp-period">Feb — Aug 2022</div>
+          </div>
+          <div class="exp-body">
+            <div class="exp-role">Full Stack Developer Intern</div>
+            <p class="exp-desc">Modernized internal tooling by replacing brittle Excel-based workflows with a proper web application.</p>
+            <ul class="exp-bullets">
+              <li>Built a Laravel/PHP web application to replace complex spreadsheet workflows, improving data processing efficiency.</li>
+              <li>Led requirements engineering for a website redesign, delivering a cleaner, more user-friendly interface.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">Laravel</span>
+              <span class="tag">PHP</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">HTML/CSS</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item fade-up">
+          <div class="exp-meta">
+            <div class="exp-company">Hica Solutions</div>
+            <div class="exp-period">Mar — Jul 2021 · NL</div>
+          </div>
+          <div class="exp-body">
+            <div class="exp-role">Game Developer Intern</div>
+            <p class="exp-desc">Worked on immersive 3D game development and hardware analysis for VR gaming controllers.</p>
+            <ul class="exp-bullets">
+              <li>Developed a 3D Unity video game in C++ with immersive mechanics and core gameplay loops.</li>
+              <li>Analyzed and compared performance of Hica hand-controller and Manus VR for optimal user experience.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">Unity</span>
+              <span class="tag">C++</span>
+              <span class="tag">VR</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── PROJECT ───────────────────────────────── -->
+  <section id="project">
+    <div class="container">
+      <div class="project-header fade-up">
+        <div>
+          <div class="section-label">04 — Featured Project</div>
+          <h2>App Modernization</h2>
+        </div>
+        <a href="https://github.com/Elbadri0" target="_blank" rel="noopener" class="btn-outline">View GitHub →</a>
+      </div>
+
+      <div class="project-card fade-up">
+        <div class="project-card-inner">
+          <div class="project-number">Project 01 — Full-Stack Modernization</div>
+          <h3>Legacy Spring Boot + Angular Platform Upgrade</h3>
+          <p>
+            A startup's core platform suffered from slow API response times, outdated dependencies,
+            and error-prone manual deployments. The challenge: modernize without breaking production.
+          </p>
+          <p>
+            Upgraded Spring Boot, refactored the service architecture, optimized critical SQL queries,
+            introduced JWT authentication, and automated deployments through a CI/CD pipeline with AWS Elastic Beanstalk and S3.
+          </p>
+          <div class="project-result">
+            <div class="result-item">
+              <strong>65%</strong>
+              <span>faster API response times after query optimization and service refactoring</span>
+            </div>
+            <div class="result-item">
+              <strong>40%</strong>
+              <span>smaller frontend bundle after Angular build optimization</span>
+            </div>
+            <div class="result-item">
+              <strong>Zero</strong>
+              <span>manual deployments — fully automated CI/CD pipeline shipped to AWS</span>
+            </div>
+          </div>
+          <div class="exp-tags" style="margin-top:1.5rem;">
+            <span class="tag">Spring Boot</span>
+            <span class="tag">Angular</span>
+            <span class="tag">JWT Auth</span>
+            <span class="tag">AWS Elastic Beanstalk</span>
+            <span class="tag">S3</span>
+            <span class="tag">CI/CD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── CREDENTIALS ───────────────────────────── -->
+  <section id="resume">
+    <div class="container">
+      <div class="section-label fade-up">05 — Credentials</div>
+      <h2 class="fade-up">Education &amp; Certifications</h2>
+      <div class="resume-cols fade-up">
+        <div class="resume-block">
+          <h3>Education</h3>
+          <div class="resume-items">
+            <div class="resume-item">
+              <div class="resume-item-title">Software Engineering Degree</div>
+              <div class="resume-item-sub">Mundiapolis University</div>
+              <div class="resume-item-year">Casablanca, Morocco · 2022 · Integrated Preparatory Cycle</div>
+            </div>
+            <div class="resume-item">
+              <div class="resume-item-title">Baccalaureate (PC)</div>
+              <div class="resume-item-sub">HOMAN ELFETWAKI High School</div>
+              <div class="resume-item-year">Casablanca, Morocco · 2017 · Mention Well</div>
+            </div>
+          </div>
+        </div>
+        <div class="resume-block">
+          <h3>Certifications</h3>
+          <div class="resume-items">
+            <div class="resume-item">
+              <div class="resume-item-title">Oracle Certified Professional</div>
+              <div class="resume-item-sub">Java SE 21 Developer</div>
+              <div class="resume-item-year">Oracle</div>
+            </div>
+            <div class="resume-item">
+              <div class="resume-item-title">Mastering Java 8 to Java 21</div>
+              <div class="resume-item-sub">Advanced Features Deep Dive</div>
+            </div>
+            <div class="resume-item">
+              <div class="resume-item-title">AWS Basics — S3</div>
+              <div class="resume-item-sub">Coursera</div>
+              <div class="resume-item-year">2021</div>
+            </div>
+            <div class="resume-item">
+              <div class="resume-item-title">Spring Boot to AWS Elastic Beanstalk</div>
+              <div class="resume-item-sub">Deployment Certification</div>
+            </div>
+            <div class="resume-item">
+              <div class="resume-item-title">Git and GitHub</div>
+              <div class="resume-item-sub">Version Control Training</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── CONTACT ───────────────────────────────── -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-left fade-up">
+          <div class="section-label">06 — Contact</div>
+          <h2>Let's build something <em>great</em> together.</h2>
+          <p>
+            Open to backend engineering roles, freelance API/system projects, and consulting
+            on modernizing legacy platforms. Let's talk.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:elbadri.abdelhamid@gmail.com" class="contact-link">
+              <div class="contact-link-icon">✉</div>
+              <div>
+                <span class="contact-link-label">Email</span>
+                elbadri.abdelhamid@gmail.com
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/abdelhamid-elbadri-engineer/" target="_blank" rel="noopener" class="contact-link">
+              <div class="contact-link-icon">in</div>
+              <div>
+                <span class="contact-link-label">LinkedIn</span>
+                abdelhamid-elbadri
+              </div>
+            </a>
+            <a href="https://github.com/Elbadri0" target="_blank" rel="noopener" class="contact-link">
+              <div class="contact-link-icon">GH</div>
+              <div>
+                <span class="contact-link-label">GitHub</span>
+                Elbadri0
+              </div>
+            </a>
+            <a href="tel:+212649628821" class="contact-link">
+              <div class="contact-link-icon">☏</div>
+              <div>
+                <span class="contact-link-label">Phone</span>
+                +212 6-4962-8821
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="fade-up">
+          <form action="https://formsubmit.co/elbadri.abdelhamid@gmail.com" method="POST" class="contact-form">
+            <input type="hidden" name="_next" value="https://elbadriabdelhamid.engineer/thanks.html" />
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="name">Name</label>
+                <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required />
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required />
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="subject">Subject</label>
+              <input class="form-input" type="text" id="subject" name="subject" placeholder="Project inquiry, collaboration…" />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="message">Message</label>
+              <textarea class="form-textarea" id="message" name="message" placeholder="Tell me about your project or opportunity…" required></textarea>
+            </div>
+            <button type="submit" class="form-submit">Send message →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-copy">© 2024 Abdelhamid Elbadri. Casablanca, Morocco.</span>
+      <div class="footer-socials">
+        <a href="https://github.com/Elbadri0" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/abdelhamid-elbadri-19366314a/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:elbadri.abdelhamid@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Cursor dot
+    const dot = document.getElementById('cursorDot');
+    document.addEventListener('mousemove', e => {
+      dot.style.left = e.clientX + 'px';
+      dot.style.top  = e.clientY + 'px';
+    });
+
+    // Nav toggle
+    const toggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+    // Close nav on link click
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Smooth scroll for all nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Fade-up on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
 </body>
-
 </html>
